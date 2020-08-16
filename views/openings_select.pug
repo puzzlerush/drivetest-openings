@@ -1,0 +1,38 @@
+extends layout
+
+block content
+  h1= title
+  form(method='POST' action='')
+    div.form-group
+        label(for='locations') Locations:
+        select#locations.form-control(type='select', placeholder='Select locations', name='locations', required='true' multiple)
+          each location in open_locations
+            if selected_locations && selected_locations.indexOf(location) > -1
+              option(value=!{location} selected) #{location}
+            else
+              option(value=!{location}) #{location}
+    div.form-group
+        label(for='start_date') Start date:
+        input#start_date.form-control(type='date' name='start_date' value=d_start)
+    div.form-group
+        label(for='end_date') End date:
+        input#end_date.form-control(type='date' name='end_date' value=d_end)
+    button.btn.btn-primary(type='submit') Submit
+  br
+  if errors 
+    ul
+      for error in errors
+        li!= error.msg
+  if selected_openings
+      table
+        tr
+          th Location
+          th Date
+        each opening in selected_openings
+          tr
+            td #{opening.location}
+            td #{opening.date_formatted}
+        else
+          tr
+            td(colspan='2') No openings were found.
+        

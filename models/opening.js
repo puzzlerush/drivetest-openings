@@ -14,7 +14,7 @@ var OpeningSchema = new Schema(
 OpeningSchema
 .virtual('date_formatted')
 .get(function () {
-    return moment(this.date).format('LL');
+    return moment.utc(this.date).format('LL');
 });
 
 module.exports = mongoose.model('Opening', OpeningSchema);

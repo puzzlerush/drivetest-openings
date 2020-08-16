@@ -12,7 +12,7 @@ var InstanceSchema = new Schema(
 InstanceSchema
 .virtual('time_formatted')
 .get(function () {
-    return moment(this.time_updated).format('LLLL');
+    return moment.utc(this.time_updated).format('LLLL');
 });
 
 module.exports = mongoose.model('Instance', InstanceSchema);

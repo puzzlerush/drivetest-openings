@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var moment = require('moment')
+var moment = require('moment-timezone')
 
 var Schema = mongoose.Schema;
 
@@ -12,7 +12,7 @@ var InstanceSchema = new Schema(
 InstanceSchema
 .virtual('time_formatted')
 .get(function () {
-    return moment.utc(this.time_updated).format('LLLL');
+    return moment(this.time_updated).tz('America/New_York').format('LLLL');
 });
 
 module.exports = mongoose.model('Instance', InstanceSchema);

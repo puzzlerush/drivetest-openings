@@ -15,5 +15,8 @@ block content
           tr
             td #{opening.location}
             td #{opening.date_formatted}
+        else
+          tr
+            td(colspan='2') No openings were found.
     else
       p There are no openings.

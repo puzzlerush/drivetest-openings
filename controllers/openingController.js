@@ -2,7 +2,7 @@ var Instance = require('../models/instance');
 var Opening = require('../models/opening');
 
 var async = require('async');
-var moment = require('moment');
+var moment = require('moment-timezone');
 
 const { check, validationResult } = require('express-validator/check');
 
@@ -34,7 +34,7 @@ exports.select_openings_get = function (req, res, next) {
         }
     ],
     function (err, latest_update, open_locations) {
-        res.render('openings_select', { title: 'Select Openings', error: err, latest_update: latest_update, open_locations: open_locations, d_start: moment.utc().format('YYYY-MM-DD'), d_end:moment.utc().add(1, 'months').format('YYYY-MM-DD') });    
+        res.render('openings_select', { title: 'Select Openings', error: err, latest_update: latest_update, open_locations: open_locations, d_start: moment().tz('America/New_York').format('YYYY-MM-DD'), d_end:moment().tz('America/New_York').add(1, 'months').format('YYYY-MM-DD') });    
     }
     );
 }

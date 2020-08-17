@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var moment = require('moment');
+var moment = require('moment-timezone');
 
 var Schema = mongoose.Schema;
 
@@ -14,7 +14,7 @@ var OpeningSchema = new Schema(
 OpeningSchema
 .virtual('date_formatted')
 .get(function () {
-    return moment.utc(this.date).format('LL');
+    return moment(this.date).tz('America/New_York').format('LL');
 });
 
 module.exports = mongoose.model('Opening', OpeningSchema);

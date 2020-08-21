@@ -38,7 +38,7 @@ function App() {
     filteredOpenings = getOpenings(data).filter(opening => opening.location.includes(filter));
   }
   
-  let openingsInRange = filteredOpenings.filter(opening => moment(startDate).tz('America/New_York').isBefore(opening.date) && moment(endDate).tz('America/New_York').isAfter(opening.date))
+  let openingsInRange = filteredOpenings.filter(opening => (moment(startDate).tz('America/New_York').isBefore(opening.date) && moment(endDate).tz('America/New_York').isAfter(opening.date)))
   
   return (
     <div className="container">

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { DateRangePicker } from "react-dates";
 import moment from "moment";
 
 function Filter(props) {
@@ -23,27 +22,30 @@ function Filter(props) {
     }
   }
   
+  const startDate = moment(props.startDate).tz('America/New_York').format("YYYY-MM-DD")
+  const endDate = moment(props.endDate).tz('America/New_York').format("YYYY-MM-DD")
+  
   return (
     <div class="form-wrapper">
       <input
         type="text"
         id="filter-input"
         className=""
-        placeholder="Search for a location"
+        placeholder="Search location"
         onChange={handleFilterChange}
       />
       <input 
         type="date"
         id="start-date"
         className=""
-        value={props.startDate.format('YYYY-MM-DD')}
+        value={startDate}
         onChange={handleStartChange}
       />
       <input 
         type="date"
         id="end-date"
         className=""
-        value={props.endDate.format('YYYY-MM-DD')}
+        value={endDate}
         onChange={handleEndChange}
       />
     </div>

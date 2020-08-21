@@ -13,6 +13,16 @@ function getOpenings(data) {
   return data["all_openings"];
 }
 
+function dateIsBetween(date, start, end) {
+  const formatDate = moment(date).tz('America/New_York').format("YYYY-MM-DD");
+  const formatStart = moment(start).tz('America/New_York').format("YYYY-MM-DD");
+  const formatEnd = moment(end).tz('America/New_York').format("YYYY-MM-DD");
+  return (moment(formatStart).tz('America/New_York').isBefore(formatDate) ||
+         moment(formatStart).tz('America/New_York').isSame(formatDate)) && 
+         (moment(formatEnd).tz('America/New_York').isAfter(formatDate) ||
+         moment(formatEnd).tz('America/New_York').isSame(formatDate));
+}
+
 function App() {
   
   const [data, setData] = useState({"latest_update":{"time_updated":"2020-08-11T01:51:19.983Z","_id":"5f3c859779b1d5696c6c908b"},"all_openings":[]});
@@ -38,7 +48,7 @@ function App() {
     filteredOpenings = getOpenings(data).filter(opening => opening.location.includes(filter));
   }
   
-  let openingsInRange = filteredOpenings.filter(opening => (moment(startDate).tz('America/New_York').isBefore(opening.date) && moment(endDate).tz('America/New_York').isAfter(opening.date)))
+  let openingsInRange = filteredOpenings.filter(opening => dateIsBetween(opening.date, startDate, endDate));
   
   return (
     <div className="container">

@@ -26,28 +26,36 @@ function Filter(props) {
   const endDate = moment(props.endDate).tz('America/New_York').format("YYYY-MM-DD")
   
   return (
-    <div class="form-wrapper">
-      <input
-        type="text"
-        id="filter-input"
-        className=""
-        placeholder="Search location"
-        onChange={handleFilterChange}
-      />
-      <input 
-        type="date"
-        id="start-date"
-        className=""
-        value={startDate}
-        onChange={handleStartChange}
-      />
-      <input 
-        type="date"
-        id="end-date"
-        className=""
-        value={endDate}
-        onChange={handleEndChange}
-      />
+    <div class="grid-container">
+      <div class="grid-item grid-item-filter">
+        <input
+          type="text"
+          id="filter-input"
+          className="form-control"
+          placeholder="Search location"
+          onChange={handleFilterChange}
+        />
+      </div>
+      <small class="grid-item grid-item-startlabel">Showing openings from</small>
+      <div class="grid-item grid-item-startdate">
+        <input 
+          type="date"
+          id="start-date"
+          className="form-control"
+          value={startDate}
+          onChange={handleStartChange}
+        />
+      </div>
+      <small class="grid-item grid-item-endlabel">to</small>
+      <div class="grid-item grid-item-enddate">
+        <input 
+          type="date"
+          id="end-date"
+          className="form-control"
+          value={endDate}
+          onChange={handleEndChange}
+        />
+      </div>
     </div>
     
   );

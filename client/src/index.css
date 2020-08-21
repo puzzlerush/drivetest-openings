@@ -10,11 +10,6 @@ code {
     monospace;
 }
 
-input {
-  width: 20%;
-  margin: 20px;
-}
-
 .header {
   background-color: darkblue;
   color: white;
@@ -24,8 +19,37 @@ input {
   font-size: 2em;
 }
 
-.form-wrapper {
-  text-align: center;
+.grid-container {
+  margin: 15px;
+  grid-gap: 15px;
+  display: grid;
+  grid-template-areas: 'filter startlabel startdate endlabel enddate';
+}
+
+.grid-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.grid-item-filter {
+  grid-area: filter;
+}
+
+.grid-item-startlabel {
+  grid-area: startlabel;
+}
+
+.grid-item-startdate {
+  grid-area: startdate;
+}
+
+.grid-item-endlabel {
+  grid-area: endlabel;
+}
+
+.grid-item-endddate {
+  grid-area: enddate;
 }
 
 .table-wrapper {
@@ -44,10 +68,17 @@ input {
   min-height: 100vh;
 }
 
+@media (max-width: 1200px) {
+  .grid-container {
+    grid-template-areas: 
+      'filter filter filter filter'
+      'startlabel startdate endlabel enddate';
+  }
+}
+
 @media (max-width: 1000px) {
-  input {
-    margin-left: 10px;
-    margin-right: 10px;
+  input[type=date] {
+    max-width: 20vw;
   }
   
   .container {
@@ -60,11 +91,6 @@ input {
 }
 
 @media (max-width: 600px) {
-  input {
-    width: 80%;
-    display: block;
-  }
-  
   .form-wrapper {
     margin: auto;
   }

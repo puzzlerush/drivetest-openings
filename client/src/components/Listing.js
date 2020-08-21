@@ -7,7 +7,7 @@ export default function Listing(props) {
   const openingList = props.openings.map(
     function(opening) {
       return (
-        <tr id={opening._id}>
+        <tr id={opening._id} key={opening._id}>
           <td scope="col">{opening.location}</td>
           <td>{moment(opening.date).tz("America/New_York").format("LL")}</td>
         </tr>
@@ -16,9 +16,9 @@ export default function Listing(props) {
   );
   
   return (
-    <div class="table-wrapper">
-      <div class="table-scroll">
-        <table class="table table-hover">
+    <div className="table-wrapper">
+      <div className="table-scroll">
+        <table className="table table-hover">
           <thead>
             <tr>
               <th scope="col">Location</th>

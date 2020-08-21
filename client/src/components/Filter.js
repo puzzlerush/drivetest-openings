@@ -1,15 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 
 function Filter(props) {
+  function handleChange(e) {
+    if (e.target.value) {
+      props.setFilter(e.target.value);
+    } else {
+      props.setFilter(".*");
+    }
+    
+  }
   return (
-    <form class="m-4">
-      <input
-        type="text"
-        id="filter-input"
-        className="form-control"
-        placeholder="Search for a location"
-      />
-    </form>
+    <input
+      type="text"
+      id="filter-input"
+      className="form-control m-4"
+      placeholder="Search for a location"
+      onChange={handleChange}
+    />
   );
 }
 

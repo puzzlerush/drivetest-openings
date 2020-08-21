@@ -14,6 +14,7 @@ function getOpenings(data) {
 }
 
 function App() {
+  
   const [data, setData] = useState({"latest_update":{"time_updated":"2020-08-11T01:51:19.983Z","_id":"5f3c859779b1d5696c6c908b"},"all_openings":[]});
   
   const fetchData = async () => {
@@ -26,12 +27,17 @@ function App() {
     fetchData()
   }, []);
   
+  const [filter, setFilter] = useState(".*");
+  const re = new RegExp(filter)
+  const filteredOpenings = getOpenings(data).filter(opening => re.test(opening.location));
+  console.log(re);
+  
   return (
     <div className="container">
       <Header/>
-      <Filter />
-      <Listing openings={getOpenings(data)} />
-      <small class="footer text-muted m-4">
+      <Filter setFilter={setFilter} />
+      <Listing openings={filteredOpenings} />
+      <small className="footer text-muted m-4">
         Last updated {getLastUpdated(data)}
       </small>
     </div>

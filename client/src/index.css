@@ -10,8 +10,9 @@ code {
     monospace;
 }
 
-tbody {
-  overflow-y: scroll;
+input {
+  width: 20% !important;
+  min-width: 250px;
 }
 
 .header {

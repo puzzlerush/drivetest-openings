@@ -11,8 +11,8 @@ code {
 }
 
 input {
-  width: 20% !important;
-  min-width: 250px;
+  width: 20%;
+  margin: 20px;
 }
 
 .header {
@@ -22,6 +22,10 @@ input {
   text-align: center;
   font-family: 'Roboto', sans-serif;
   font-size: 2em;
+}
+
+.form-wrapper {
+  text-align: center;
 }
 
 .table-wrapper {
@@ -41,6 +45,11 @@ input {
 }
 
 @media (max-width: 1000px) {
+  input {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  
   .container {
     width: 80%
   }
@@ -51,6 +60,15 @@ input {
 }
 
 @media (max-width: 600px) {
+  input {
+    width: 80%;
+    display: block;
+  }
+  
+  .form-wrapper {
+    margin: auto;
+  }
+  
   .container {
     width: 90%;
   }

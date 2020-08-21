@@ -28,15 +28,29 @@ function App() {
   }, []);
   
   const [filter, setFilter] = useState(".*");
-  const re = new RegExp(filter)
-  const filteredOpenings = getOpenings(data).filter(opening => re.test(opening.location));
-  console.log(re);
+  const [startDate, setStartDate] = useState(moment().tz('America/New_York'));
+  const [endDate, setEndDate] = useState(moment().tz('America/New_York').add(1, 'months'));
+  let filteredOpenings = getOpenings(data);
+  try {
+    const re = new RegExp(filter, 'i');
+    filteredOpenings = getOpenings(data).filter(opening => re.test(opening.location));
+  } catch(e) {
+    filteredOpenings = getOpenings(data).filter(opening => opening.location.includes(filter));
+  }
+  
+  let openingsInRange = filteredOpenings.filter(opening => moment(startDate).tz('America/New_York').isBefore(opening.date) && moment(endDate).tz('America/New_York').isAfter(opening.date))
   
   return (
     <div className="container">
       <Header/>
-      <Filter setFilter={setFilter} />
-      <Listing openings={filteredOpenings} />
+      <Filter 
+        setFilter={setFilter}
+        startDate={startDate}
+        setStartDate={setStartDate}
+        endDate={endDate}
+        setEndDate={setEndDate}
+      />
+      <Listing openings={openingsInRange} />
       <small className="footer text-muted m-4">
         Last updated {getLastUpdated(data)}
       </small>

@@ -33,7 +33,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use('/', indexRouter);
+app.use(express.static(path.join(__dirname, 'build')));
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
+
+app.use('/index', indexRouter);
 app.use('/users', usersRouter);
 app.use('/openings', openingsRouter);
 app.use('/api', apiRouter);

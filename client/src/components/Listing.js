@@ -9,7 +9,7 @@ export default function Listing(props) {
       return (
         <tr id={opening._id} key={opening._id}>
           <td scope="col">{opening.location}</td>
-          <td>{moment(opening.date).tz("America/New_York").format("LL")}</td>
+          <td>{moment(opening.date).utc().format("LL")}</td>
         </tr>
       );
     }
